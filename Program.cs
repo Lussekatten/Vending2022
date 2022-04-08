@@ -14,4 +14,3 @@ Console.WriteLine("Enjoy your purchase(s), said the vending machine returning {0
 Console.Read();
 vm.ShowAll();
 
-//Console.WriteLine($"The area of the square with a side of 5 equals: {square.GetArea()}");
