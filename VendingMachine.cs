@@ -35,7 +35,7 @@ namespace Vending2022
         }
         public void EndTransaction()
         {
-
+            Console.WriteLine("Enjoy your purchase(s), said the vending machine returning {0} kr to you.", InsertedAmount);
         }
 
         void CreateListOfCoins()

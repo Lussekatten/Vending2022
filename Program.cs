@@ -10,5 +10,5 @@ vm.ShowAll();
 
 vm.Purchase();
 
-Console.WriteLine("Enjoy your purchase(s), said the vending machine returning {0} kr to you.", vm.InsertedAmount);
+vm.EndTransaction();
 
