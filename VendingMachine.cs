@@ -35,7 +35,31 @@ namespace Vending2022
         }
         public void EndTransaction()
         {
-            Console.WriteLine("Enjoy your purchase(s), said the vending machine returning {0} kr to you.", InsertedAmount);
+            //If we are to return the change in correct amount of bills/cois, we need to use modulo operations to detect
+            //what kind of change we should return, starting with the biggest values first
+            // _coinValues is a list so we better make it into an array first
+            int[] coinValuesArr = _coinValues.ToArray();
+
+            //We also need to store away how many of each value. We use an array for this.
+            int[] howManyOfEach = new int[coinValuesArr.Length];
+
+            //We also need an amount to process.
+            //The starting value will be the remaining funds to be returned to the user
+            //But as we proceed, we will have less and less to convert into valid currencies
+            int currentAmountToDistribute = InsertedAmount;
+
+            Console.WriteLine();
+            Console.WriteLine("Enjoy your purchase(s), said the vending machine returning {0} kr to you like this:", InsertedAmount);
+            for (int i = coinValuesArr.Length-1; i >= 0; i--)
+            {
+                if ( currentAmountToDistribute >= coinValuesArr[i])
+                {
+                    howManyOfEach[i] = currentAmountToDistribute / coinValuesArr[i];
+                    Console.WriteLine($"{howManyOfEach[i]} st x {coinValuesArr[i]} kr");
+                    currentAmountToDistribute = currentAmountToDistribute % coinValuesArr[i];
+                    //Console.WriteLine($"Remaining value: {currentAmountToDistribute}");
+                }
+            }
         }
 
         void CreateListOfCoins()
