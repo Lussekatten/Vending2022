@@ -35,7 +35,7 @@ namespace Vending2022
         }
         public void EndTransaction()
         {
-            //If we are to return the change in correct amount of bills/cois, we need to use modulo operations to detect
+            //If we are to return the change in correct monetary values, we could use modulo operations to detect
             //what kind of change we should return, starting with the biggest values first
             // _coinValues is a list so we better make it into an array first
             int[] coinValuesArr = _coinValues.ToArray();
@@ -50,6 +50,7 @@ namespace Vending2022
 
             Console.WriteLine();
             Console.WriteLine("Enjoy your purchase(s), said the vending machine returning {0} kr to you like this:", InsertedAmount);
+            //The most significant monetary value is at the end of the array. That's why we pick the array elements in reverse order
             for (int i = coinValuesArr.Length-1; i >= 0; i--)
             {
                 if ( currentAmountToDistribute >= coinValuesArr[i])
